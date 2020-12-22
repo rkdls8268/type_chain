@@ -1,0 +1,8 @@
+{
+  "name": "type_chain",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/rkdls8268/type_chain.git",
+  "author": "rkdls8268 <rkdls8268@gmail.com>",
+  "license": "MIT"
+}
