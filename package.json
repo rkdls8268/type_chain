@@ -6,7 +6,7 @@
   "author": "rkdls8268 <rkdls8268@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "tsc-watch --onSuccess \" node dist/index.js\" "
+    "start": "tsc-watch --onSuccess \" node dist/block.js\" "
   },
   "devDependencies": {
     "tsc-watch": "^4.2.9"
