@@ -70,8 +70,12 @@ const createNewBlock = (data: string): Block => {
         data, 
         newTimestamp
     );
+    // 새로운 블록을 만들 때 이를 blockChain에 추가
+    addBlock(newBlock);
     return newBlock;
 };
+
+const getHashForBlock = (aBlock: Block): string => Block.calculateBlockHash(aBlock.index, aBlock.previousHash, aBlock.timestamp, aBlock.data);
 
 // candidate 블록과 previous 블록을 비교할 것.
 // 블록체인의 기반은 블록들이 자신의 전 블록으로의 링크가 있다는 것. 
@@ -84,9 +88,23 @@ const isBlockValid = (candidateBlock: Block, previousBlock: Block): boolean => {
         return false;
     } else if (previousBlock.hash !== candidateBlock.previousHash) { // 해쉬값 다른지 체크
         return false;
+    } else if (getHashForBlock(candidateBlock) !== candidateBlock.hash) { // 생성되는 해쉬값이 맞는지 체크 
+        return false;
+    } else {
+        return true;
     }
 };
 
-// console.log(createNewBlock("hello"), createNewBlock("bye bye"));
+const addBlock = (candidateBlock: Block): void => {
+    if (isBlockValid(candidateBlock, getLatestBlock())) {
+        blockChain.push(candidateBlock);
+    }
+}
+
+createNewBlock("second block");
+createNewBlock("third block");
+createNewBlock("fourth block");
+
+console.log(blockChain);
 
 export {};
